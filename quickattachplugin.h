@@ -8,7 +8,6 @@
 namespace ProjectExplorer {
 class Project;
 class RunConfiguration;
-class LocalApplicationRunConfiguration;
 }
 
 namespace Core {
@@ -21,6 +20,7 @@ namespace Internal {
 class QuickAttachPlugin : public ExtensionSystem::IPlugin
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QtCreatorPlugin" FILE "QuickAttach.json")
 
 public:
     QuickAttachPlugin();
@@ -36,7 +36,7 @@ private slots:
     void attachToProgram();
 
 private:
-    ProjectExplorer::LocalApplicationRunConfiguration* currentRunConfig;
+    ProjectExplorer::RunConfiguration* currentRunConfig;
     Core::Command* attachCmd;
 };
 
@@ -44,4 +44,3 @@ private:
 } // namespace QuickAttach
 
 #endif // QUICKATTACH_H
-

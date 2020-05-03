@@ -1,0 +1,12 @@
+{
+    \"Name\": \"QuickAttach\",
+    \"Version\": \"0.0.2\",
+    \"CompatVersion\": \"0.0.2\",
+    \"Category\": \"Utilities\",
+    \"Vendor\": \"Nick Forrington\",
+    \"Copyright\": \"(C) Nick Forrington\",
+    \"License\": \"\",
+    \"Description\": \"Finds and attaches to a running instance of your project\'s binary\",
+    \"Url\": \"https://github.com/NickRF/qtcreator-quickattach/\",
+    $$dependencyList
+}

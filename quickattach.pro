@@ -1,44 +1,37 @@
-TARGET = QuickAttach
-TEMPLATE = lib
-
 DEFINES += QUICKATTACH_LIBRARY
 
 # QuickAttach files
 
 SOURCES += quickattachplugin.cpp
 
-HEADERS += quickattachplugin.h\
-        quickattach_global.h\
-        quickattachconstants.h
-
-OTHER_FILES = QuickAttach.pluginspec
-
-QT += network # Required by hostutils
+HEADERS += quickattachplugin.h \
+           quickattach_global.h \
+           quickattachconstants.h
 
 # Qt Creator linking
 
-## set the QTC_SOURCE environment variable to override the setting here
-QTCREATOR_SOURCES = $$(QTC_SOURCE)
-isEmpty(QTCREATOR_SOURCES):QTCREATOR_SOURCES=/home/nick/programming/qt-creator
+## Either set the IDE_SOURCE_TREE when running qmake,
+## or set the QTC_SOURCE environment variable, to override the default setting
+isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = $$(QTC_SOURCE)
+isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = "$$PWD/qt-creator"
 
-## set the QTC_BUILD environment variable to override the setting here
-IDE_BUILD_TREE = $$(QTC_BUILD)
-isEmpty(IDE_BUILD_TREE):IDE_BUILD_TREE=/home/nick/programming/qt-creator/build
+## Either set the IDE_BUILD_TREE when running qmake,
+## or set the QTC_BUILD environment variable, to override the default setting
+isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = $$(QTC_BUILD)
+isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = "$$PWD/qt-creator"
 
 ## uncomment to build plugin into user config directory
 ## <localappdata>/plugins/<ideversion>
 ##    where <localappdata> is e.g.
-##    "%LOCALAPPDATA%\Nokia\qtcreator" on Windows Vista and later
-##    "$XDG_DATA_HOME/Nokia/qtcreator" or "~/.local/share/Nokia/qtcreator" on Linux
-##    "~/Library/Application Support/Nokia/Qt Creator" on Mac
-USE_USER_DESTDIR = yes
+##    "%LOCALAPPDATA%QtProjectqtcreator" on Windows Vista and later
+##    "$XDG_DATA_HOME/data/QtProject/qtcreator" or "~/.local/share/data/QtProject/qtcreator" on Linux
+##    "~/Library/Application Support/QtProject/Qt Creator" on OS X
+# USE_USER_DESTDIR = yes
 
-include($$QTCREATOR_SOURCES/src/qtcreatorplugin.pri)
-include($$QTCREATOR_SOURCES/src/plugins/coreplugin/coreplugin.pri)
-include($$QTCREATOR_SOURCES/src/plugins/projectexplorer/projectexplorer.pri)
-include($$QTCREATOR_SOURCES/src/plugins/debugger/debugger.pri)
+# Plugin dependency info
+QTC_PLUGIN_NAME = QuickAttach
+QTC_LIB_DEPENDS +=
+QTC_PLUGIN_DEPENDS += coreplugin debugger projectexplorer
+QTC_PLUGIN_RECOMMENDS +=
 
-include($$QTCREATOR_SOURCES/src/plugins/debugger/shared/shared.pri)
-
-LIBS += -L$$IDE_PLUGIN_PATH/Nokia
-
+include($$IDE_SOURCE_TREE/src/qtcreatorplugin.pri)

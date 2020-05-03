@@ -2,7 +2,9 @@
 .obj
 
 Makefile
-QuickAttach.pluginspec
+QuickAttach.json
+
+.qmake.stash
 
 *.pro.user
 
