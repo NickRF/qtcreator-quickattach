@@ -109,6 +109,7 @@ jobs:
         string(REPLACE "licheck64" "" qtconfig "${qtconfig}")
         string(REPLACE "licheck_mac" "" qtconfig "${qtconfig}")
         file(WRITE "qt5/${qt_dir_prefix}/mkspecs/qconfig.pri" "${qtconfig}")
+        file(WRITE "qt5/${qt_dir_prefix}/bin/qt.conf" "[Paths]\nPrefix = ${qt_dir}")
 
     - name: Download Qt Creator
       id: qt_creator
